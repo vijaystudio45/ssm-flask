@@ -1,0 +1,10 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+    background: rgb(248,89,166);
+    background: linear-gradient(119deg, rgba(248,89,166,0.95) 0%, rgba(69,19,179,1) 100%);
+}
+
+header {
+    padding-top: 1em;
+}

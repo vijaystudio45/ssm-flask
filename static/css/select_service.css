@@ -1,0 +1,93 @@
+
+
+.service-list .service-head .image-container,
+.service-list .service-head .image-container>img {
+    width: 100px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.service-head h5 {
+    text-align: center;
+}
+
+/* .dim-counter {
+    color: grey;
+    background-color: unset;
+    border: unset;
+    display: flex;
+    text-align: center;
+}
+
+.dim-counter h6 {
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.dim-counter h5 {
+    margin-bottom: unset;
+} */
+
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.service-head {
+    width: 100%;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.service-head h5 {
+    margin-bottom: unset;
+}
+
+.service-list-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+button.prev,
+button.next {
+    border: unset;
+    background-color: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1;
+}
+
+button.prev:hover,
+button.next:hover {
+    background-color: var(--input-border-soft);
+}
+
+/* .meta-count {
+    color: #2dc500;
+    font-size: 0.75rem;
+} */
+
+.top-row {
+    display: flex;
+    padding-right: 0.75rem;
+}
+
+.top-row a,
+.top-row div {
+    width: auto;
+}
+
+.top-row a {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

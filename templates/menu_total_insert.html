@@ -1,0 +1,82 @@
+<div class="hidescroll sidenav menu-container left-container left-container-bg">    
+    
+    <!-- MENU MOBILE -->
+        <div class="d-flex d-row d-md-none py-2 align-items-end">
+
+            <!-- HAMBURGER MENU -->
+            <div class="col-5 px-2">
+                <button class="navbar navbar-toggler d-md-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mobile-menu-coll" aria-controls="mobile-menu-coll" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            
+            <div class="col-7 col-md-12">
+                <!-- Logo -->
+                <a class="navbar-brand mb-2" href="{{ url_for('new_home') }}">
+                    <img id="dark-logo-mobile" onerror="imageRetry(this)" onload="update_darkmode()"
+                        src="/static/images/boost_logo.webp" class="img-fluid"
+                        alt="Boost logo">
+                </a>   
+                
+                <a class="navbar-brand mb-2" href="{{ url_for('new_home') }}">
+                    <img id="white-logo-mobile" onerror="imageRetry(this)" onload="update_darkmode()"
+                        src="/static/images/boost_logo_dark.webp" class="img-fluid"
+                        alt="Boost logo">
+                </a>   
+            </div>
+            
+            
+        </div>
+
+    
+    <!-- Open menu mobile  -->
+    <div class="d-md-none">
+        <div class="collapse navbar-collapse text-black-c-50" id="mobile-menu-coll">
+            <ul class="navbar-nav me-auto ms-3 mb-2 small-font-custom-18">
+
+                {% include 'menu_list_insert.html' %}
+
+            </ul>
+        </div>
+    </div>
+
+        
+    <!-- Classic Menu Left side -->  
+    <ul class="nav mt-5 d-none d-md-flex font-medium">
+
+    <!-- Logo -->
+    <a class="navbar-brand mb-2" href="{{ url_for('new_home')}}">
+        <img id="white-logo" onerror="imageRetry(this)" onload="update_darkmode()"
+            src="/static/images/boost_logo.webp?timestamp=0" class="img-fluid"
+            alt="Boost logo">
+    </a>
+
+    <a class="navbar-brand mb-2" href="{{ url_for('new_home')}}">
+        <img id="dark-logo" onerror="imageRetry(this)" onload="update_darkmode()"
+            src="/static/images/boost_logo_dark.webp?timestamp=0" class="img-fluid"
+            alt="Boost logo">
+    </a>
+    {% include 'menu_list_insert.html' %}
+
+    </ul>
+
+    <!-- Card under menu left side -->
+    <div class="d-none d-md-block card silver-background border-1">
+        <div class="card-body text-center">
+            <p class="text-start px-2"><img
+                    src="{{ url_for('static', filename='icons/icon_info_p.svg') }}?timestamp=0"
+                    class="icon-size-smaller filter-icon-active"></p>
+            <p class="card-text text-start px-2 small-font-custom-12">Use our <a class="menu-color-text-active" href="{{url_for('signup')}}">Premium</a>
+                features now for free</p>
+            <div class="col">
+                <a href="{{url_for('signup')}}" type="button"
+                class="btn btn-dark col-12 py-2 small-font-custom-12 rounded-4">Try
+                    for free now
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

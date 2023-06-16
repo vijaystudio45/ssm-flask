@@ -1,0 +1,232 @@
+.content {
+    max-width: 1300px;
+}
+
+span.breadcrumbs {
+    span {
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.5);
+
+        &:not(:last-of-type):after {
+            content: "/";
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    }
+}
+
+.left-content {
+    .service-details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        @media screen and (min-width: 400px) and (max-width: 500px) {
+            display: grid;
+            grid-template-columns: 75px 1fr;
+
+            .action-group {
+                grid-row: 2;
+                grid-column: 1 / span 2;
+                justify-self: flex-end;
+            }
+
+            .service-name,
+            .image-container {
+                grid-row: 1;
+            }
+        }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .image-container {
+            max-width: 75px;
+            max-height: 75px;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .service-name {
+            margin-right: auto;
+        }
+
+        @media screen and (max-width: 400px) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .action-group {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .price {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .service-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+
+    @media screen and (max-width: 500px) {
+
+        .service-details,
+        .service-stats {
+            flex-wrap: wrap;
+
+            .counter {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .breadcrumbs {
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.toast {
+    position: absolute;
+    top: 10px;
+    right: 50%;
+    z-index: 1;
+    color: white;
+    opacity: 95%;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: 0.5rem;
+
+    .counter-text {
+        display: flex;
+        white-space: nowrap;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        width: 100%;
+        align-items: flex-start;
+
+        img {
+            margin-left: auto;
+            max-width: 1rem;
+            max-height: 1rem;
+        }
+    }
+
+    .updated {
+        font-size: 0.75rem;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+        margin: unset;
+    }
+
+    &.purple,
+    &.pink,
+    &.orange {
+        padding-left: 1.5rem;
+
+        &:before {
+            position: absolute;
+            left: 0;
+            display: flex;
+            content: "";
+            width: 10px;
+            height: 100%;
+        }
+    }
+
+    &.purple:before {
+        background-color: #5c03f7;
+    }
+
+    &.pink:before {
+        background-color: #e5b6c6;
+    }
+
+    &.orange:before {
+        background-color: #e79770;
+    }
+}
+
+.right-content {
+    .service-list {
+        display: flex;
+        flex-direction: column;
+
+        .service {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1rem;
+            margin: 0 -1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+            .service-image {
+                max-width: 60px;
+
+                img {
+                    border-radius: 15px;
+                    max-width: 100%;
+                }
+            }
+
+            .price .value {
+                font-size: 1.25rem;
+            }
+
+            .service-details {
+                margin-right: auto;
+            }
+
+            button {
+                flex-shrink: 0;
+            }
+
+            button.info {
+                position: relative;
+                filter: unset;
+                background-color: #5c03f7;
+                border-radius: 3px;
+                align-self: center;
+                top: unset;
+                right: unset;
+
+                img {
+                    filter: grayscale(1) invert(1);
+                }
+            }
+
+            button.add {
+                position: relative;
+                border-radius: 3px;
+                align-self: center;
+                padding: unset;
+                width: 25px;
+                height: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+            }
+        }
+    }
+}

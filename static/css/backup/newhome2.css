@@ -1,0 +1,70 @@
+/* *, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    box-sizing: border-box;
+} */
+
+
+.first-card-out {
+    background-color: #3a47b9;
+}
+
+.first-card-in {
+    background-color: #4375ce;
+}
+
+.first-counter-border {
+    border-left: 10px solid #5f01fc;
+}
+
+.second-card-out {
+    background-color: #74bbc1;
+}
+
+.second-card-in {
+    background-color: #97e4ea;
+}
+
+.second-counter-border {
+    border-left: 10px solid #e6baca;
+}
+
+.third-card-out {
+    background-color: #e06d84;
+}
+
+.third-card-in {
+    background-color: #e5ccdf;
+}
+
+.third-counter-border {
+    border-left: 10px solid #e8986d;
+}
+
+.closer-margin-top {
+    margin-top: -0.5rem;
+  }
+
+.small-font-custom-75 {
+    font-size: 0.75rem;
+}
+
+.menu-color-text {
+    color: #5f02f2;
+}
+
+.background-purple-menu {
+    background-color: #5f02f2;
+
+}
+
+/* .disable-hover {
+    pointer-events: none;
+    display: inline-block;
+} */
+
+.left-menu-button-bg {
+    background-color: #f2f0fd;
+}

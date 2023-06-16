@@ -1,0 +1,136 @@
+button.info svg {
+    color: white;
+    fill: white;
+}
+
+button.info img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+button.account {
+    min-width: 50px;
+    min-height: 50px;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border: unset;
+    padding: unset;
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    box-shadow: 0 5px 5px var(--input-border-soft);
+}
+
+button.account img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+button.info {
+    width: 25px;
+    height: 25px;
+    background-color: var(--icon-svg-info-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    border: 1px solid var(--icon-svg-info-border-color);
+    border-radius: 50%;
+    padding: 3px;
+    filter: var(--icon-svg-info-social-media);
+}
+
+button.add {
+    color: var(--button-add-service-color);
+    background-color: var(--button-add-service-bg-color);
+    border: 1px solid var(--button-add-service-border-color);
+    border-radius: 50px;
+    padding: 0.25rem 1.5rem;
+    font-size: 0.75rem;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    text-transform: uppercase;
+    /* border: unset; */
+}
+
+button.add:hover {
+    color: var(--button-add-service-hover-color);
+    background-color: var(--button-add-service-hover-bg-color);
+    border: 1px solid var(--button-add-service-hover-border-color);
+    
+}
+
+button.add:hover img{
+    filter: var(--icon-svg-social-media-hover);
+}
+
+button.add>img {
+    max-height: 1rem;
+    filter: var(--icon-svg-social-media);
+    margin-left: 0.5rem;
+}
+
+
+.add-now.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.price {
+    display: flex;
+    align-items: flex-start;
+}
+
+.currency {
+    font-size: 1rem;
+}
+
+.value {
+    font-size: 2rem;
+}
+
+.pre-price {
+    color: var(--text-color-pre-price);
+    font-size: 0.75rem;
+}
+
+.instagram {
+    position: relative;
+    background: #f09433;
+    width: 100px;
+    height: 100px;
+    background: -moz-linear-gradient(45deg,
+            #f09433 0%,
+            #e6683c 25%,
+            #dc2743 50%,
+            #cc2366 75%,
+            #bc1888 100%);
+    background: -webkit-linear-gradient(45deg,
+            #f09433 0%,
+            #e6683c 25%,
+            #dc2743 50%,
+            #cc2366 75%,
+            #bc1888 100%);
+    background: linear-gradient(45deg,
+            #f09433 0%,
+            #e6683c 25%,
+            #dc2743 50%,
+            #cc2366 75%,
+            #bc1888 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 20px;
+}

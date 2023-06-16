@@ -1,0 +1,14 @@
+[Unit]
+Description=Boostgram fake numbers service
+After=multi-user.service
+
+[Service]
+Type=notify
+Restart=always
+ExecStart=/var/www/html/ssm/venv/bin/python3  /var/www/html/ssm/utils/fake_numbers.py
+KillSignal=SIGQUIT
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+

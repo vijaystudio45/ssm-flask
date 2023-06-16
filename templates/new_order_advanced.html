@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- FA Icons -->
+    <script src="https://kit.fontawesome.com/ce08879d07.js" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/my_style.css">
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Autocomplete stuff -->
+    <script src="{{ url_for('static', filename='js/autocomplete.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/autocomplete.css">
+
+    <!-- Reloader JS -->
+    <script src="{{ url_for('static', filename='js/reloader.js') }}"></script>
+
+    <!-- Dark mode setup JS -->
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+
+
+    <!-- Logout JS-->
+    <script src="{{ url_for('static', filename='js/logout.js')}}"></script>
+
+    <!-- Advancer alerting JS-->
+    <script src="{{ url_for('static', filename='js/toast_control.js')}}"></script>
+
+    <!-- Add order JS -->
+    <script src="{{ url_for('static', filename='js/add_order.js') }}"></script>
+
+    <!-- Plausible script-->
+    <script defer data-domain="boostgram.net" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Counts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google log in -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+    <title>Boost website</title>
+</head>
+
+<body>
+    <header></header>
+    {% include 'toast.html' %}
+    {% include 'FAQ.html' %}
+    {% include 'contact.html' %}
+    {% include 'bot_panel.html' %}
+
+    <div id="search_terms" class="d-none">{% for el in search_terms %}
+        {{ el }}
+        <br>
+        {% endfor %}
+    </div>
+
+    <i class="d-block d-md-none fa fa-2x fa-arrow-circle-up go-top" aria-hidden="true"></i>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- Left global part -->
+                <div class="p-0 col-md-3 col-lg-2">
+
+                    <!-- Menu left side --> 
+
+                        {% include 'menu_total_insert.html' %}
+
+                </div>
+
+                <!-- Central global part -->
+                <div class="col-12 col-md-9 col-lg-10 silver-background py-3">
+
+                    <div class="central-container px-3">
+
+                        <!-- Seach and try section -->
+                        <div class="row mt-3">
+                            <div class="col-5"></div>
+                            <div class="col-7">
+
+                                <div class="input-group position-relative">
+                                    <a href="{{url_for('signup')}}" type="button"
+                                        class="btn btn-dark col-6 py-1 rounded-4  small-font-custom-14">
+                                        Try for free
+                                    </a>
+
+                                    <input type="search"
+                                        class="form-control form-control-custom rounded-4 ms-2 py-1 small-font-custom-14"
+                                        id="search" placeholder="Search Anything" aria-label="Search"
+                                        aria-describedby="search-addon"><img onerror="imageRetry(this)"
+                                        src="/static/icons/icon_search.svg"
+                                        class="icon-size-smaller icon-light position-absolute top-50 end-0 translate-middle me-4">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Counter -->
+
+                        <div class="row mt-5 mb-3">
+                            <div class="col-12 col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card first-counter-border">
+                                    <div class="card-body pb-0 pe-0">
+                                        <h6 class="font-semibold mb-0">Users Online<img onerror="imageRetry(this)"
+                                                src="/static/icons/icon_users_online_counter.svg"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="font-medium mb-0" data-toggle="counterUp">173048</h2>
+                                        <p class="text-black-c-50 small-font-custom-14">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card second-counter-border">
+                                    <div class="card-body pb-0 pe-0">
+                                        <h6 class="font-semibold mb-0">New Orders<img onerror="imageRetry(this)"
+                                                src="/static/icons/icon_new_orders_counter.svg"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="font-medium mb-0" data-toggle="counterUp">173.048</h2>
+                                        <p class="text-black-c-50 small-font-custom-14">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card third-counter-border">
+                                    <div class="card-body pb-0 pe-0">
+                                        <h6 class="font-semibold mb-0">Total Orders<img onerror="imageRetry(this)"
+                                                src="/static/icons/icon_total_orders_counter.svg"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="font-medium mb-0" data-toggle="counterUp">173,048</h2>
+                                        <p class="text-black-c-50 small-font-custom-14">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Table section -->
+                        <section class="mt-5 mb-4">
+                            <div class="opposite-background
+                                rounded-4 p-4">
+
+                                <h3 class="mt-2 mb-3">Add Order</h3>
+
+                                <div class="mt-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-2 text-start">
+                                                <label for="category"
+                                                    class="form-label font-semibold mb-1 ms-1 small-font-custom-18">Category</label>
+                                                <select
+                                                    class="form-select form-control-custom border rounded-0 small-font-custom-16"
+                                                    data-style="btn-info" id="category" aria-label="">
+                                                    {%for category, services in categories.items() %}
+                                                    <option>{{category}}</option>
+                                                    {%endfor%}
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-2 text-start">
+                                                <label for="service"
+                                                    class="form-label font-semibold mb-1 ms-1 small-font-custom-18">Service</label>
+                                                <select
+                                                    class="form-select form-control-custom border rounded-0 small-font-custom-16"
+                                                    id="service" aria-label="">
+                                                    {% for category, services in categories.items() %}
+                                                    {% for service in services %}
+                                                    <option type="service_selector" service_type="{{service.type}}"
+                                                        service_id={{service.id}} id="{{category}}"
+                                                        cost="{{service.rate}}">
+                                                        {{service.name}}</option>
+                                                    {%endfor%}
+                                                    {%endfor%}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <span id="input_fields">
+
+                                        <div class=" mb-2 text-start"
+                                            enable_types="Default Custom_Comments Mentions_User_Followers Comment_Likes Poll">
+                                            <label for="order_link"
+                                                class="form-label font-semibold mb-1 ms-1 small-font-custom-16">Link</label>
+                                            <input type="text"
+                                                class="form-control form-control-sm form-control-custom border rounded-0 small-font-custom-14"
+                                                id="order_link" placeholder=""
+                                                enable_types="Default Custom_Comments Mentions_User_Followers Comment_Likes Poll">
+                                        </div>
+
+                                        <div class="mb-2 text-start" enable_types="Custom_Comments">
+                                            <label for="comments"
+                                                class="form-label font-semibold mb-1 ms-1 small-font-custom-18">Comments
+                                                (1
+                                                per line) </label>
+                                            <textarea
+                                                class="form-control form-control-sm form-control-custom border rounded-0 small-font-custom-16 left-menu-button-bg"
+                                                placeholder="" aria-label="With textarea" id="comments"
+                                                style="height: 150px" enable_types="Custom_Comments"></textarea>
+                                        </div>
+
+
+
+                                        <div class="mb-2 text-start"
+                                            enable_types="Mentions_User_Followers Comment_Likes">
+                                            <label for="username"
+                                                class="form-label font-semibold mb-1 ms-1 small-font-custom-18">Username</label>
+                                            <input type="text"
+                                                class="form-control form-control-sm form-control-custom border rounded-0 small-font-custom-16"
+                                                id="username" placeholder="username"
+                                                enable_types="Mentions_User_Followers Comment_Likes">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="mb-2 text-start" enable_types="Poll">
+                                                    <label for="answer_number"
+                                                        class="form-label font-semibold mb-1 ms-1 small-font-custom-18">Answer
+                                                        Number</label>
+                                                    <input type="text"
+                                                        class="form-control form-control-sm form-control-custom border rounded-0 small-font-custom-16"
+                                                        id="answer_number" placeholder="" enable_types="Poll">
+                                                    <p class="mt-1 mb-1 ms-2 small-font-custom-14">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="mb-2 text-start"
+                                                    enable_types="Default Mentions_User_Followers Comment_Likes Poll">
+                                                    <label for="quantity"
+                                                        class="form-label font-semibold mb-1 ms-1 small-font-custom-18">Quantity</label>
+                                                    <input type="text"
+                                                        class="form-control form-control-sm form-control-custom border rounded-0 small-font-custom-16"
+                                                        id="quantity" placeholder=""
+                                                        enable_types="Default Mentions_User_Followers Comment_Likes Poll">
+                                                </div>
+                                            </div>
+                                            <p class="mt-1 mb-1 ms-2 small-font-custom-14">
+
+                                                {% for category, services in categories.items() %}
+                                                {% for service in services %}
+                                            <div class="service_quantity" id="{{service.name}}">
+                                                Min: {{service.min}} -
+                                                Max: {{service.max}}</div>
+                                            {%endfor%}
+                                            {%endfor%}
+
+                                            </p>
+                                        </div>
+                                    </span>
+                                    <div class="mb-2 text-start">
+                                        <img onerror="imageRetry(this)" src="/static/icons/icon_payment.svg"
+                                            class="icon-size-normal"><label for="payment"
+                                            class="form-label font-semibold mb-1 ms-1 menu-color-text-active small-font-custom-16">Subtotal</label>
+                                        <input type="text" disabled
+                                            class="form-control form-control-sm form-control-custom border-purple rounded-0 small-font-custom-14"
+                                            id="payment" placeholder="" disabled>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button id="submit_task" onclick="submitTask()" type="button"
+                                            class="btn btn-dark small-font-custom-12  rounded-4">Submit
+                                            Order
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+
+                </div>
+                <!-- Right global part -->
+
+
+            </div>
+        </div>
+
+
+
+
+    </main>
+
+    <footer></footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+<!-- Scroll Mobile JS -->
+<script type="text/javascript" src="/static/js/scroll_to_top.js"></script>
+
+<!-- <script type="text/javascript">
+    // jQuery counterUp
+    $('[data-toggle="counterUp"]').counterUp({
+        delay: 15,
+        time: 1500
+    });
+</script> -->
+
+<!-- Google login -->
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
+
+
+</body>
+
+</html>

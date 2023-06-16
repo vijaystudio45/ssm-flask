@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">  
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/my_style.css">
+    <link rel="stylesheet" href="/static/css/register.css">
+
+    <!-- Signup Javascript -->
+    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+
+    <!-- Advanced alerting Javascript -->
+    <script src="{{ url_for('static', filename='js/toast_control.js')}}"></script>
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Dark mode setup JS -->
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+
+    <!-- FA Icons -->
+    <script src="https://kit.fontawesome.com/ce08879d07.js" crossorigin="anonymous"></script>
+    <!-- Google log in -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script>
+        var googleUser = {};
+        var startApp = function () {
+            gapi.load('auth2', function () {
+                // Retrieve the singleton for the GoogleAuth library and set up the client.
+                auth2 = gapi.auth2.init({
+                    client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+                    cookiepolicy: 'single_host_origin',
+                    // Request scopes in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+                attachSignin(document.getElementById('GoogleBtn'));
+            });
+        };
+
+        function attachSignin(element) {
+            console.log(element.id);
+            auth2.attachClickHandler(element, {},
+                function (googleUser) {
+                    document.getElementById('name').innerText = "Signed in: " +
+                        googleUser.getBasicProfile().getName();
+                }, function (error) {
+                    alert(JSON.stringify(error, undefined, 2));
+                });
+        }
+    </script>
+
+    <!-- Plausible script-->
+    <script defer data-domain="boostgram.net" src="https://plausible.io/js/script.js"></script>
+
+    <title>Boost website</title>
+
+</head>
+
+<body>
+    {% include 'toast.html' %}
+
+    <i class="d-block d-md-none fa fa-2x fa-arrow-circle-up go-top" aria-hidden="true"></i>
+
+    <div class="row justify-content-center">
+        <div class="p-0 d-flex d-sm-none d-md-block col-sm-6">
+            <a href="/home">
+                <img id="bgimage" src="{{ url_for('static', filename='images/singup_bg.webp') }}"
+                    class="d-sm-block d-none img-fluid" alt="boost image"></a>
+                <!-- <img id="bgimage" src="{{ url_for('static', filename='images/boost_homepage_dark_image1.webp') }}"
+                    class="d-sm-block d-none img-fluid" alt="boost image"></a> -->
+        </div>
+        <div class="col-12 col-sm-10 col-md-6 justify-content-center">
+            <div class="my-1 mx-0 px-3 px-md-4">
+                
+                <p class="text-left h5 mt-4 mb-3">Please enter
+                    your
+                    information to register a new account!</p>
+
+                <div class="d-flex flex-row justify-content-left mb-5">
+                    <button type="button" class="btn btn-light" id="GoogleBtn"><img
+                            src="{{ url_for('static', filename='icons/icon_google.webp') }}" alt="google" width="22"
+                            height="22"> Sign in with Google</button>
+                </div>
+
+                <div id="name"></div>
+
+                <form>
+                    <div class="mb-4">
+                        <div class="form-outline mb-0">
+                            <i class="fas fa-envelope fa-lg fa-fw"></i>
+                            <label class="form-label" for="email">Email:</label>
+                            <input type="text" id="email" class="form-control form-control-custom" size="50" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-outline mb-0">
+                            <i class="fas fa-user fa-lg fa-fw"></i>
+                            <label class="form-label" for="username">Username:</label>
+                            <input type="email" id="username" class="form-control form-control-custom" size="50" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-outline mb-0">
+                            <i class="fas fa-lock fa-lg fa-fw"></i>
+                            <label class="form-label" for="password">Password:</label>
+                            <input type="password" id="password" class="form-control form-control-custom" size="50" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-outline mb-0">
+                            <i class="fas fa-key fa-lg  fa-fw"></i>
+                            <label class="form-label" for="password2">Repeat password:</label>
+                            <input type="password" id="password2" class="form-control form-control-custom" size="50" />
+                        </div>
+                    </div>
+
+                    <div class="form-check d-flex justify-content-center mb-5">
+                        <input class="form-check-input me-2 form-control-custom" type="checkbox" value="" id="terms-and-conditions" />
+                        <label class="form-check-label" for="terms-and-conditions">
+                            I agree with all statements in <a href="{{ url_for('static', filename='terms.pdf') }}"
+                                target="_blank" class="menu-color-text-active">Terms of service</a>
+                            <!--ovde dodati modal-->
+                        </label>
+                    </div>
+
+                    <div class="d-flex justify-content-center mb-4">
+                        <button onclick="submitRegister()" type="button" class="col-10 col-md-7 btn btn-dark btn-sm round-4 small-font-custom-18"
+                            id="register">Register</button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+<!-- Scroll Mobile JS -->
+<script type="text/javascript" src="/static/js/scroll_to_top.js"></script>
+
+<!-- Google      -->
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
+<script>startApp();</script>
+
+</body>
+
+</html>

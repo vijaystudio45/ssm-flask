@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Boostgram is a marketing panel that allows you to promote your bussiness efficiently and for reasonable prices. Buy comments, likes, views for all your socials media accounts" />
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/my_style.css">
+    
+    <!-- Plausible script-->
+    <script defer data-domain="boostgram.net" src="https://plausible.io/js/script.js"></script>
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Advanced alerting JS -->
+    <script src="{{ url_for('static', filename='js/toast_control.js')}}"></script>
+
+    <!-- Reloader JS -->
+    <script src="{{ url_for('static', filename='js/reloader.js') }}"></script>
+
+    <!-- Logout JS -->
+    <script src="{{ url_for('static', filename='js/logout.js')}}"></script>
+
+    <!-- Login JS -->
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+    <!-- smart nav JS -->
+    <script src="{{ url_for('static', filename='js/homepage_smart_nav.js') }}"></script>
+
+    <!-- Counts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <!-- Dark mode setup -->
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+    
+
+    <!-- Alerts -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+    </svg>
+
+    <!-- Google log in -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
+    <title>BoostGram - boost your social media accounts</title>
+
+</head>
+
+<body>
+
+    <div class="d-none" id="port">{{port}}</div>
+
+    {% include 'contact.html' %}
+    {% include 'FAQ.html' %}
+    {% include 'toast.html' %}
+    {% include 'bot_panel.html' %}
+
+    <i class="d-block d-md-none fa fa-2x fa-arrow-circle-up go-top" aria-hidden="true"></i>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row main-gradient">
+
+                <!-- Left global part -->
+                <div class="p-0 col-md-3 col-lg-2 order-1 ">
+                    
+                    <!-- Menu left side --> 
+                
+                    {% include 'menu_total_insert.html' %}
+                    
+                    <img class="pt-4 d-none d-md-flex image-planet-left"
+                        src="{{ url_for('static', filename='images/planet_left.webp') }}" alt="Italian Trulli">
+                    <img class="d-none d-md-flex image-leaves"
+                        src="{{ url_for('static', filename='images/leaves.webp') }}" alt="Italian Trulli">
+                
+                </div>
+
+                <!-- Central global part -->
+                <div class="mid middle-gradient col-md-5 col-lg-6 mb-3 order-3 order-md-2">
+                    <div class="central-container px-3 ">
+
+                        <!-- Seach and try section -->
+                        <!-- <div class="row mt-3">
+                            <div class="col-5"></div>
+                            <div class="col-7">
+
+                                <div class="input-group position-relative">
+                                    <button type="button"
+                                        class="btn col-6 py-1 btn-dark text-white rounded-4 background-purple-menu small-font-custom-12">
+                                        Try for free
+                                    </button>
+
+                                    <input type="search"
+                                        class="form-control form-control-custom rounded-4 ms-2 py-1 small-font-custom-12"
+                                        id="search" placeholder="Search Anything" aria-label="Search"
+                                        aria-describedby="search-addon"><img onerror="imageRetry(this)"src="/static/icons/icon_search.svg"
+                                        class="icon-size-smaller icon-light position-absolute top-50 end-0 translate-middle me-4">
+                                </div>
+                            </div>
+                        </div> -->
+
+
+                        <h2 class="mt-3 pt-1 font-semibold text-center">BoostGram Benefits -------</h2>
+                        <p class="text-black-c-50 small-font-custom-16">
+
+                            All social media services under one biggest SMM panel in the world.
+                            Buy Followers
+                            Buy Likes
+                            Buy Comments
+                            Buy Views
+                            And more options for all socials media in the world !</p>
+
+                        <div class="row mt-5">
+
+                            <div class="col-12 col-lg-4 px-2 mb-2">
+                                <div class="card rounded-4 first-card-out">
+                                    <div class="card-body text-opposite">
+                                        <div class="row mx-auto rounded-4 first-card-in">
+                                            <div class="position-relative">
+                                                <img onerror="imageRetry(this)"
+                                                    src="{{ url_for('static', filename='images/cheap.webp') }}?timestamp=0"
+                                                    class="position-absolute top-50 start-50 translate-middle pb-3 card-pic-height"
+                                                    alt="Cheap">
+                                            </div>
+                                        </div>
+                                        <h4 class="mt-3 mb-0 ms-2"><a class="text-opposite font-medium"
+                                                href="#">Cheap</a></h4>
+                                        <p class="mb-0 ms-2  small-font-custom-14">The
+                                            cheapest panel there is!</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-4 px-2 mb-2">
+                                <div class="card rounded-4 second-card-out">
+                                    <div class="card-body text-opposite">
+                                        <div class="row mx-auto rounded-4 second-card-in">
+                                            <div class="position-relative">
+                                                <img onerror="imageRetry(this)"
+                                                    src="{{ url_for('static', filename='images/fast.webp') }}?timestamp=0"
+                                                    class="position-absolute top-50 start-50 translate-middle pb-3 card-pic-height"
+                                                    alt="Fast">
+                                            </div>
+                                        </div>
+                                        <h4 class="mt-3 mb-0 ms-2"><a class="text-opposite font-medium"
+                                                href="#">Fast</a></h4>
+                                        <p class="mb-0 ms-2  small-font-custom-14">The
+                                            fastest delivery!</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-4 px-2 mb-2">
+                                <div class="card rounded-4 third-card-out">
+                                    <div class="card-body text-opposite">
+                                        <div class="row mx-auto rounded-4 third-card-in">
+                                            <div class="position-relative">
+                                                <img onerror="imageRetry(this)"
+                                                    src="{{ url_for('static', filename='images/guarantee.webp') }}?timestamp=0"
+                                                    class="position-absolute top-50 start-50 translate-middle pb-3 card-pic-height"
+                                                    alt="Guarantee">
+                                            </div>
+                                        </div>
+                                        <h4 class="mt-3 mb-0 ms-2"><a class="text-opposite font-medium"
+                                                href="#">Guarantee</a></h4>
+                                        <p class="mb-0 ms-2  small-font-custom-14">
+                                            Guaranteed completion!</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Counter -->
+
+                        <div class="row mt-5 mb-3">
+                            <div class="col-12 col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card first-counter-border">
+                                    <div class="card-body pb-0 pe-0">
+                                        <h6 class="font-semibold mb-0">Users Online<img onerror="imageRetry(this)"
+                                                src="{{ url_for('static', filename='icons/icon_users_online_counter.svg') }}?timestamp=0"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="font-medium mb-0" data-toggle="counterUp">
+                                            {{users_online}}</h2>
+                                        <p class="text-black-c-50 small-font-custom-14">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card second-counter-border">
+                                    <div class="card-body pb-0 pe-0">
+                                        <h6 class="font-semibold mb-0">New Orders<img onerror="imageRetry(this)"
+                                                src="{{ url_for('static', filename='icons/icon_new_orders_counter.svg') }}?timestamp=0"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="font-medium mb-0" data-toggle="counterUp">{{new_orders}}
+                                        </h2>
+                                        <p class="text-black-c-50 small-font-custom-14">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card third-counter-border">
+                                    <div class="card-body pb-0 pe-0">
+                                        <h6 class="font-semibold mb-0">Total Orders<img onerror="imageRetry(this)"
+                                                src="{{ url_for('static', filename='icons/icon_total_orders_counter.svg') }}?timestamp=0"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="font-medium mb-0" data-toggle="counterUp">
+                                            {{total_orders}}</h2>
+                                        <p class="text-black-c-50 small-font-custom-14">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- You Tube section -->
+                        <!-- <section class="mb-4 mb-3">
+                            <div class="opposite-background rounded-4 p-4">
+                                <p class="mb-1 small-font-custom-14 text-black-c-50">Online link</p>
+                                <p class="mt-1 font-medium">Enjoy watching</p>
+                                <div class="ratio ratio-16x9">
+                                    <iframe src="https://www.youtube.com/embed/hcl94rCREtI" title="YouTube video player"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </section> -->
+
+                        <!-- Card under Benefits mobile menu -->
+                        <div class="d-block d-md-none card rounded-4 silver-background border-1">
+                            <div class="card-body text-center">
+                                <p class="text-start px-2"><img
+                                        src="{{ url_for('static', filename='icons/icon_info_p.svg') }}?timestamp=0"
+                                        class="icon-size-smaller filter-icon-active"></p>
+                                <p class="card-text text-start px-2 small-font-custom-12">Use our <a class="menu-color-text-active" href="{{ url_for('signup') }}">Premium</a>
+                                    features now for free</p>
+                                <div class="col">
+                                    <a href="{{ url_for('signup') }}" type="button"
+                                        class="btn btn-dark col-12 py-2 small-font-custom-12 rounded-4">Try
+                                        for free now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <h1 class="mt-3 pt-1 font-semibold text-black-c-50">Top preforming</h1>
+                        <h4 class="text-black-c-50 ">Social Media Marketing Platforms</h4>
+                        <br>
+
+                        <!-- Navbar -->
+                        <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+                            <!-- Container wrapper -->
+                            <div class="container-fluid">
+                                <!-- Collapsible wrapper -->
+                                <div class="" id="navbarSupportedContent">
+                                    <!-- Left links -->
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                        <li class="nav-item" onclick="switchPromo('instagram')">
+                                            <span class="nav-link" aria-current="page"><i
+                                                    class="fa fa-brands fa-instagram"></i> Instagram</span>
+                                        </li>
+
+                                        <li class="nav-item" onclick="switchPromo('youtube')">
+                                            <span class="nav-link"><i class="fa fa-brands fa-youtube"></i>
+                                                Youtube</span>
+                                        </li>
+
+                                        <li class="nav-item" onclick="switchPromo('twitter')">
+                                            <span class="nav-link"><i class="fa fa-brands fa-square-twitter"></i>
+                                                Twitter</span>
+                                        </li>
+
+                                        <li class="nav-item" onclick="switchPromo('facebook')">
+                                            <span class="nav-link"><i class="fa fa-brands fa-square-facebook"></i>
+                                                Facebook</span>
+                                        </li>
+                                    </ul>
+                                    <!-- Left links -->
+                                </div>
+                                <!-- Collapsible wrapper -->
+                            </div>
+                            <!-- Container wrapper -->
+                        </nav>
+                        <!-- Navbar -->
+
+                        <!-- Top preforming section -->
+                        <section class="mb-4 mt-3">
+                            <div class="opposite-background rounded-4 p-4 position-relative">
+                                <h3 class="mb-1 text-black-c-50" id="promo-title">Instagram SSM tools</h3>
+                                <br />
+                                <p class="mt-1 font-medium " id="promo-text">Instagram is one of the biggest social
+                                    media platforms out there. We provide various services for Instagram. <br></br> Our
+                                    smm tools will improve not only follower counts, but it will increase your social
+                                    image. Instagram followers and other engagement plays a big role when companies are
+                                    looking at your profile.
+                                </p>
+                                <br />
+                                <div class="btn-group position-absolute bottom-0 end-0">
+                                    <a href="https://boostgram.net/add_order/search/Instagram%20|%20Followers|%20Refill"
+                                        type="button" id="buy-followers-btn"
+                                        class="m-0 py-2 btn btn-dark rounded-0  small-font-custom-12">Buy
+                                        Followers</a>
+                                    <a href="https://boostgram.net/add_order/Instagram/Instagram%20|%20Likes%20|%20Refill/details"
+                                        type="button" id="buy-likes-btn"
+                                        class="m-0 py-2 btn btn-dark  small-font-custom-12">Buy
+                                        Likes</a>
+                                    <a href="https://boostgram.net/add_order/search/Instagram%20|%20Comment%20(Random"
+                                        type="button" id="buy-comments-btn"
+                                        class="m-0 py-2 btn btn-dark rounded-0  small-font-custom-12">Buy
+                                        Comments</a>
+                                </div>
+                            </div>
+                        </section>
+                        <div>
+                            <br />
+                            <h3 id="benefits-anchor" class="mt-3 pt-1 font-semibold text-black-c-50">Why is
+                                Boostgram so
+                                effective?</h3>
+                            <h4 class="text-black-c-50 ">Social Media Marketing Platforms</h4>
+                            <br />
+                            <ul>
+                                <p class="pl-3"><i class="fa-regular fa-square-check"></i> Live chat support for all
+                                    clients.
+                                    Customer service is #1</p>
+                                <p class="pl-3"><i class="fa-regular fa-square-check"></i> We work with celebs, artists,
+                                    creators
+                                    and more</p>
+                                <p class="pl-3"><i class="fa-regular fa-square-check"></i> 100% confidential moneyback
+                                    guarantee
+                                    (funds in balance)</p>
+                            </ul>
+                            <p>Here at boostgram.net, we strive for customer service as well as top quality performance.
+                                You
+                                are 100% protected by using our services.</p>
+
+                        </div>
+                    </div>
+                    <div class="text-center py-2">
+                        <a href="{{url_for('signup')}}" type="button"
+                        class="px-6 py-2 btn btn-dark rounded-4  small-font-custom-12">Get Started Here</a>
+                    </div>
+                        
+                </div>
+
+                <!-- Right global part -->
+                <div class="p-0 col-md-4 col-lg-4 mt-3 text-center order-2 order-md-3">
+                    
+
+                    {% if alert %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                            <use xlink:href="#exclamation-triangle-fill" />
+                        </svg>
+                        <div>
+                            Login expired, please relogin!
+                        </div>
+                    </div>
+                    {% endif %}
+    
+                    <h2 class="font-semibold pt-5">Hello!</h2>
+
+                    {% if not logged_in %}
+                    <p class="small-font-custom-16">Welcome back! Please enter your details.</p>
+    
+    
+                    <div class="login-space col-8 mx-auto mt-3">
+                        <div class="mb-2 text-start">
+                            <label for="login-email"
+                                class="form-label font-semibold mb-1 ms-1 small-font-custom-16">Username:</label>
+                            <input type="email"
+                                class="form-control form-control-sm form-control-custom border rounded-0 small-font-custom-18"
+                                id="login-email" placeholder="your username">
+                        </div>
+    
+                        <div class="mb-2 text-start">
+                            <label for="login-password"
+                                class="form-label font-semibold mb-1 ms-1 small-font-custom-16">Password:</label>
+                            <input type="password"
+                                class="form-control form-control-sm form-control-custom border rounded-0 small-font-custom-18"
+                                id="login-password" placeholder="password">
+                        </div>
+                        <!-- 
+                            <div class="form d-flex justify-content-between small-font-custom-10 font-semibold px-1">
+                                <div class="form-check d-inline-flex">
+                                    <input class="form-check-input" type="checkbox" value="" id="check-remember" checked>
+                                    <label class="form-check-label" for="remember">
+                                        Remember for 30 days
+                                    </label>
+                                </div>
+                                <div class="form-check d-inline-flex">
+                                    <input class="form-check-input" type="checkbox" value="" id="check-password">
+                                    <label class="form-check-label" for="check-password">
+                                        Forgot password
+                                    </label>
+                                </div>
+                            </div> -->
+    
+                        <button type="button" onclick="submitLogin()"
+                            class="btn btn-dark mt-3 col-12 py-2 rounded-4 background-button-login small-font-custom-14 font-medium">
+                            Log in
+                        </button>
+    
+    
+                        <!-- Google login -->
+    
+                        <!-- <div class="col py-2" disabled>
+                                <a class="btn col-12 btn-outline-dark rounded-4 small-font-custom-12 font-medium"
+                                    href="users/googleauth" role="button">
+                                    <img onerror="imageRetry(this)"width="20px" class="mx-1" alt="Google sign-in"
+                                        src="https://img.icons8.com/color/16/000000/google-logo.webp?timestamp=0">
+                                    Login with Google
+                                </a>
+                            </div> -->
+    
+    
+                        <p class="mt-3 small-font-custom-14">Don't have account? <strong class="font-semibold"><a
+                                    class="text-black-dark hover-purple small-font-custom-18" href="signup"
+                                    data-abc="true">Sign up for free</a></strong></p>
+                    </div>
+                    <div class="p-0 container-fluid">
+                        <img class="img-fluid" src="{{ url_for('static', filename='images/homepage_graphics.webp')}}">
+                    </div>
+
+                    {% else %}
+                    <div class="d-flex justify-content-center card col-6 rounded-circle border border-3 m-auto mt-2">
+                        <img onerror="imageRetry(this)"
+                            src="{{ url_for('static', filename='images/spaceman.webp') }}?timestamp=0"
+                            class="card-img" alt="User login name">
+
+                        <div class="card-img-overlay">
+                            <div class="text-end icon-badge-margin">
+                                <span class="badge rounded-circle bg-warning">
+                                    <img onerror="imageRetry(this)"
+                                        src="{{ url_for('static', filename='icons/icon_bell.svg') }}?timestamp=0"
+                                        class="icon-size-smaller"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="fs-3 font-semibold pt-2 mb-0">{{ username }}</p>
+
+                    <!-- <p style="z-index: -2; position: relative" class="text-black-dark small-font-custom-18">
+                        <text class="bg-blur-custom p-2">
+                            Account balance ${{funds}}
+                        </text>
+                    </p> -->
+    
+                    <div class="p-0 container-fluid">
+                        <img class="img-fluid" src="{{ url_for('static', filename='images/boost_background_tr.webp')}}">
+                    </div>
+    
+                    {% endif %}
+
+                    <div class="d-none d-md-flex">
+                        <img class="stars1" src="{{url_for('static', filename='images/stars.webp')}}">
+                    </div>
+                    <img class="pt-4 d-none d-md-flex image-planet-right"
+                        src="{{ url_for('static', filename='images/planet_right.webp') }}" alt="Italian Trulli">
+                    <div class="d-none d-md-flex stars">
+                        <img class="stars2" src="{{url_for('static', filename='images/stars.webp')}}">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+crossorigin="anonymous"></script>
+
+<!-- Scroll Mobile JS -->
+<script type="text/javascript" src="/static/js/scroll_to_top.js"></script>
+
+<script type="text/javascript">
+
+// jQuery counterUp
+$(function () {
+var $images = $('img.imageClassUpdateAtInterval:not([src="/assets/spinner.gif"])');
+
+// Now, no such image with
+// a spinner
+if ($images.length === 0 && window.imageLocator)
+    clearInterval(window.imageLocator);
+
+
+window.imageLocator = setInterval(function () {
+    $images.each(function () {
+        $this = $(this);
+        if (!$this.data('src')) {
+            $this.data('src', $this.prop('src'));
+        }
+
+        $this.prop('src', $this.data('src') + '?timestamp=' + new Date().getTime());
+        console.log($this.prop('src'));
+    });
+}, 60 * 1000);
+
+// suppose, an error occured during
+// locating the src (source) of the
+// image - image not found, network
+// unable to locate the resource etc.
+// it will fall in each time on error
+// occurred 
+$('img.imageClassUpdateAtInterval').error(
+    function () {
+        // set a broken image
+        $(this).unbind("error").attr("src", "/assets/broken.gif");
+        // setting this up in relative
+        // position
+        $(this).css("position", "relative");
+        $(this).apppend("<span>Error occured</span>");
+        $(this).find("span").css({ "position": "absolute", "background-color": "#252525", "padding": ".3em", "bottom": "0" });
+    });
+});
+</script>
+
+
+</body>
+
+</html>

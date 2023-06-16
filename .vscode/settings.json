@@ -1,0 +1,13 @@
+{
+    "python.pythonPath": "C:\\Users\\pmarkovic\\Documents\\codes\\upw_ssm\\venv\\Scripts\\python.exe",
+    "python.linting.pylintPath": "C:\\Users\\pmarkovic\\Documents\\codes\\upw_ssm\\venv\\Scripts\\pylint.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintUseMinimalCheckers": false,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_flask_sqlalchemy, pylint_flask",
+        "--init-hook",
+        "import sys; sys.path.insert(0, 'C:\\Users\\pmarkovic\\Documents\\codes\\upw_ssm')"
+    ]
+}

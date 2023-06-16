@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- FA Icons -->
+    <script src="https://kit.fontawesome.com/ce08879d07.js" crossorigin="anonymous"></script>
+
+    <!-- Plausible script-->
+    <script defer data-domain="boostgram.net" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/my_style.css">
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Autocomplete stuff -->
+    <script src="{{ url_for('static', filename='js/autocomplete.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/autocomplete.css">
+
+    <!-- Reloader Javascript -->
+    <script src="{{ url_for('static', filename='js/reloader.js') }}"></script>
+
+    <!-- Dark mode setup JS -->
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+
+    <!-- Logout Javascript -->
+    <script src="{{ url_for('static', filename='js/logout.js')}}"></script>
+
+    <!-- Advanced alerting Javascript -->
+    <script src="{{ url_for('static', filename='js/toast_control.js')}}"></script>
+
+    <!-- GetStatus Javascript -->
+    <script src="{{ url_for('static', filename='js/getstatus.js') }}"></script>
+
+    <!-- Counts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google log in -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
+    <title>BoostGram - View your past orders</title>
+</head>
+
+<body>
+
+    <header></header>
+
+    {% include 'toast.html' %}
+    {% include 'FAQ.html' %}
+    {% include 'contact.html' %}
+    {% include 'bot_panel.html' %}
+
+    <div id="search_terms" class="d-none">{% for el in search_terms %}
+        {{ el }}
+        <br>
+        {% endfor %}
+    </div>
+
+    <i class="d-block d-md-none fa fa-2x fa-arrow-circle-up go-top" aria-hidden="true"></i>
+
+    <main>
+        <div id="status_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="holder_order_name" class="modal-title">Modal title</h5>
+                    </div>
+                    <div id="modal-body" class="modal-body">
+                        <div style="font-weight: bold;">Status: <span style="font-weight: unset"
+                                id="holder_response"></span></div><br />
+                        <div style="font-weight: bold;">Task id: <span style="font-weight: unset"
+                                id="holder_task_id"></span></div><br />
+                        <div style="font-weight: bold;">Order id: <span style="font-weight: unset"
+                                id="holder_order_id"></span></div><br />
+                        <div style="font-weight: bold;">Link: <a style="font-weight: unset" href="#"
+                                id="holder_link_short">Link</a></div><br />
+                        <div style="font-weight: bold;">Issued at: <span style="font-weight: unset"
+                                id="holder_issued_at"></span></div><br />
+                        <div style="font-weight: bold;">Quantity: <span style="font-weight: unset"
+                                id="holder_quantity"></span></div><br />
+                        <div style="font-weight: bold;">Cost: <span style="font-weight: unset" id="holder_cost"></span>
+                        </div><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- Left global part -->
+                <div class="p-0 col-md-3 col-lg-2">
+
+                    <!-- Menu left side -->
+
+                        {% include 'menu_total_insert.html' %}
+
+                </div>
+
+                <!-- Central global part -->
+                <div class="col-md-9 col-lg-10 silver-background mb-3">
+
+                    <div class="central-container px-3">
+
+                        <!-- Seach and try section -->
+                        <div class="row mt-3">
+                            <div class="col-7"></div>
+                            <div class="col-12 col-lg-5 p-4 pb-0 pt-0">
+
+                                <div class="input-group position-relative">
+                                    <a href="{{url_for('signup')}}" type="button"
+                                        class="btn col-6 py-1 btn-dark rounded-4 background-purple-menu small-font-custom-14">
+                                        Try for free
+                                    </a>
+
+                                    <input type="search"
+                                        class="form-control form-control-custom rounded-4 ms-2 py-1 small-font-custom-14"
+                                        id="search" placeholder="Search Anything" aria-label="Search"
+                                        aria-describedby="search-addon"><img onerror="imageRetry(this)"
+                                        src="/static/icons/icon_search.svg"
+                                        class="icon-size-smaller icon-light position-absolute top-50 end-0 translate-middle m-0">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Counter -->
+
+                        <div class="d-none d-md-flex row mt-5 mb-3">
+                            <div class="col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card first-counter-border" style="height: 7rem;">
+                                    <div class="card-body">
+                                        <h6 class="font-semibold">Users Online<img onerror="imageRetry(this)"
+                                                src="/static/icons/icon_users_online_counter.svg"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="closer-margin-top font-medium" data-toggle="counterUp">173048</h2>
+                                        <p class="closer-margin-top small-font-custom-16 text-black-50">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-12 col-lg-4 px-2 mb-2">
+                                <div class="card second-counter-border" style="height: 7rem;">
+                                    <div class="card-body">
+                                        <h6 class="font-semibold">New Orders<img onerror="imageRetry(this)"
+                                                src="/static/icons/icon_new_orders_counter.svg"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="closer-margin-top font-medium" data-toggle="counterUp">173.048</h2>
+                                        <p class="closer-margin-top small-font-custom-16 text-black-50">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-12 col-lg-4 px-2 nb-2">
+                                <div class="card third-counter-border" style="height: 7rem;">
+                                    <div class="card-body">
+                                        <h6 class="font-semibold">Total Orders<img onerror="imageRetry(this)"
+                                                src="/static/icons/icon_total_orders_counter.svg"
+                                                class="icon-menu-counter ms-2 mb-3">
+                                        </h6>
+                                        <h2 class="closer-margin-top font-medium" data-toggle="counterUp">173,048</h2>
+                                        <p class="closer-margin-top small-font-custom-16 text-black-50">updated 22 sec
+                                            ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Table section -->
+                        <section class="mt-5 mb-4">
+                            <div class="opposite-background rounded-4 p-4">
+
+                                <h3 class="mt-2 mb-3">Your previous orders </h3>
+
+                                <div class="table-responsive-lg">
+                                    <table class="table table-borderless align-middle">
+                                        <thead
+                                            class="small-font-custom-16 table-gray-bg text-opposite text-md-center text-xl-start">
+                                            <tr>
+                                                <th class="d-table-cell d-md-none">Order id</th>
+                                                <th class="d-none d-md-table-cell" scope="col">Service Name</th>
+                                                <th class="d-none d-md-table-cell" scope="col">Link</th>
+                                                <th class="d-none d-md-table-cell" scope="col">Order Time</th>
+                                                <th class="d-none d-md-table-cell" scope="col">Count</th>
+                                                <th class="d-none d-md-table-cell" scope="col">Charge</th>
+                                                <th class="" scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="small-font-custom-14">
+
+                                            {% for order in order_history|reverse %}
+                                            <tr>
+                                                <td class="d-table-cell d-md-none">{{order.id}}</td>
+                                                <td class="d-none d-md-table-cell">{{order.name}}</td>
+                                                <td class="d-none d-md-table-cell"><a target="_blank"
+                                                        href="https://{{order.link}}">{{order.link_short}}</a></td>
+                                                <td class="d-none d-md-table-cell">{{order.issued_at}}</td>
+                                                <td class="d-none d-md-table-cell">{{order.quantity}}</td>
+                                                <td class="d-none d-md-table-cell">${{order.cost}} USD</td>
+                                                <td><button
+                                                        class="btn btn-success btn-sm px-1 px-md-2 px-xxl-3 border-0 rounded-4 small-font-custom-10"
+                                                        type="submit"
+                                                        onclick="getStatus( {{ order.task_id }}, {{order.id}}, '{{order.name}}', '{{order.link_short}}', '{{order.issued_at}}', {{order.quantity}}, {{order.cost}})">
+                                                        <span id={{order.id}}>Get
+                                                            status</span>
+                                                        <div id="spinner_{{order.task_id}}"
+                                                            class="spinner-border spinner-border-sm d-none"
+                                                            role="status">
+                                                        </div>
+                                                    </button></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </section>
+
+                    </div>
+
+
+
+                </div>
+                <!-- <div class="col-md-3 col-lg-3 mt-5 pt-5 text-center bg-image">
+                    <div class="d-flex justify-content-center card col-6 rounded-circle border border-3 m-auto mt-5">
+                        <img onerror="imageRetry(this)" src="/static/images/user_thumb.webp?timestamp=0" class="card-img"
+                            alt="User login name">
+                        <div class="card-img-overlay">
+                            <div class="text-end icon-badge-margin">
+                                <span class="badge rounded-circle bg-warning">
+                                    <img onerror="imageRetry(this)" src="/static/icons/icon_bell.svg"
+                                        class="icon-size-smaller"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="fs-3 font-semibold pt-2 mb-0">{{ username }}</p>
+                    <p class="text-black-50 small-font-custom-16"><text class="bg-blur-custom p-2">
+                            Account balance ${{funds}}
+                        </text></p>
+                </div> -->
+
+
+            </div>
+        </div>
+
+
+
+
+    </main>
+
+    <footer></footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+<!-- Scroll Mobile JS -->
+<script type="text/javascript" src="/static/js/scroll_to_top.js"></script>
+
+<!-- <script type="text/javascript">
+    // jQuery counterUp
+    $('[data-toggle="counterUp"]').counterUp({
+        delay: 15,
+        time: 1500
+    });
+</script> -->
+
+<!-- Google login -->
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
+
+
+</body>
+
+</html>

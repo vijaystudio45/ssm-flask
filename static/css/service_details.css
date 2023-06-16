@@ -1,0 +1,233 @@
+/* .content {
+    max-width: 1300px
+} */
+
+span.breadcrumbs span {
+    text-transform: uppercase;
+    color: var(--text-color-50);
+}
+
+span.breadcrumbs span:not(:last-of-type):after {
+    content: "/";
+    margin-left: 1rem;
+    margin-right: 1rem
+}
+
+.left-content .service-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem
+}
+
+@media screen and (min-width: 400px)and (max-width: 500px) {
+    .left-content .service-details {
+        display: grid;
+        grid-template-columns: 75px 1fr
+    }
+
+    .left-content .service-details .action-group {
+        grid-row: 2;
+        grid-column: 1/span 2;
+        justify-self: flex-end
+    }
+
+    .left-content .service-details .service-name,
+    .left-content .service-details .image-container {
+        grid-row: 1
+    }
+}
+
+.left-content .service-details .action-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem
+}
+
+.left-content .service-details .image-container {
+    max-width: 75px;
+    max-height: 75px
+}
+
+.left-content .service-details .image-container img {
+    max-width: 100%
+}
+
+.left-content .service-details .service-name {
+    margin-right: auto
+}
+
+@media screen and (max-width: 400px) {
+    .left-content .service-details {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    .left-content .service-details .action-group {
+        display: flex;
+        flex-direction: column
+    }
+}
+
+.left-content .price {
+    margin-right: auto;
+    margin-left: auto
+}
+
+.left-content .service-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem
+}
+
+@media screen and (max-width: 500px) {
+
+    .left-content .service-details,
+    .left-content .service-stats {
+        flex-wrap: wrap
+    }
+
+    .left-content .service-details .counter,
+    .left-content .service-stats .counter {
+        margin-bottom: .5rem
+    }
+
+    .left-content .breadcrumbs {
+        font-size: .75rem
+    }
+}
+
+/* .toast {
+    position: absolute;
+    top: 10px;
+    right: 50%;
+    z-index: 1;
+    color: #fff;
+    opacity: 95%
+} */
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: .5rem
+}
+
+.counter .counter-text {
+    display: flex;
+    white-space: nowrap;
+    justify-content: space-between;
+    font-size: .75rem;
+    width: 100%;
+    align-items: flex-start
+}
+
+.counter .counter-text img {
+    margin-left: auto;
+    max-width: 1rem;
+    max-height: 1rem
+}
+
+.counter .updated {
+    font-size: .75rem;
+    color: var(--text-color-50);
+}
+
+.counter * {
+    margin: unset
+}
+
+.counter.purple,
+.counter.pink,
+.counter.orange {
+    padding-left: 1.5rem
+}
+
+.counter.purple:before,
+.counter.pink:before,
+.counter.orange:before {
+    position: absolute;
+    left: 0;
+    display: flex;
+    content: "";
+    width: 10px;
+    height: 100%
+}
+
+.counter.purple:before {
+    background-color: var(--first-counter-border);
+}
+
+.counter.pink:before {
+    background-color: var(--second-counter-border);
+}
+
+.counter.orange:before {
+    background-color: var(--third-counter-border);
+}
+
+.right-content .service-list {
+    display: flex;
+    flex-direction: column
+}
+
+.right-content .service-list .service {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    margin: 0 -1rem;
+    border-bottom: 1px solid var(--input-border-soft);
+}
+
+.right-content .service-list .service .service-image {
+    max-width: 60px
+}
+
+.right-content .service-list .service .service-image img {
+    border-radius: 15px;
+    max-width: 100%
+}
+
+.right-content .service-list .service .price .value {
+    font-size: 1.25rem
+}
+
+.right-content .service-list .service .service-details {
+    margin-right: auto
+}
+
+.right-content .service-list .service button {
+    flex-shrink: 0
+}
+
+/* .right-content .service-list .service button.info {
+    position: relative;
+    filter: unset;
+    background-color: #5c03f7;
+    border-radius: 3px;
+    align-self: center;
+    top: unset;
+    right: unset
+} */
+
+/* .right-content .service-list .service button.info img {
+    filter: grayscale(1) invert(1)
+} */
+
+.right-content .service-list .service button.add {
+    position: relative;
+    border-radius: 3px;
+    align-self: center;
+    padding: unset;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem
+}

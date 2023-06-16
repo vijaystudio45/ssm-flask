@@ -1,0 +1,13 @@
+[Unit]
+Description=Boostgram mailer service
+After=multi-user.service
+
+[Service]
+Type=notify
+Restart=always
+ExecStart=/var/www/html/ssm/venv/bin/python3  /var/www/html/ssm/utils/runner.py
+KillSignal=SIGQUIT
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target

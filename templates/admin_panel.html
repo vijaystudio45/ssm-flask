@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/my_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FA Icons -->
+    <script src="https://kit.fontawesome.com/ce08879d07.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Plausible script-->
+    <script defer data-domain="boostgram.net" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Reloader Javascript -->
+    <script src="{{ url_for('static', filename='js/reloader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/logout.js')}}"></script>
+
+    <!-- Advanced alerting Javascript -->
+    <script src="{{ url_for('static', filename='js/toast_control.js')}}"></script>
+
+    <!-- GetStatus Javascript -->
+    <script src="{{ url_for('static', filename='js/adminpanel.js') }}"></script>
+
+
+    <!-- Counts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <!-- Dark mode setup JS -->
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+
+    <!-- Google log in -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
+    <title>Boost website</title>
+</head>
+
+<body>
+
+    <header></header>
+    {% include 'FAQ.html' %}
+    {% include 'contact.html' %}
+    {% include 'bot_panel.html' %}
+
+    <i class="d-block d-md-none fa fa-2x fa-arrow-circle-up go-top" aria-hidden="true"></i>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- Left global part -->
+                <div class="p-0 col-md-3 col-lg-2">
+
+                    <!-- Menu left side -->
+
+                        {% include 'menu_total_insert.html' %}
+                    
+                </div>
+
+                <!-- Central global part -->
+                <div class="col-md-9 col-lg-10 silver-background mb-3">
+
+                    {% include 'toast.html' %}
+
+                    <div class="central-container px-3">
+                        <ul class="d-flex flex-row justify-content-start mt-5 nav nav-tabs m-1 mb-0">
+                            <li class="nav-item tab-control" data-toggle="services_tab">
+                                <a class="nav-tab nav-link active" aria-current="page" href="#">Services</a>
+                            </li>
+                            <li class="nav-item tab-control" data-toggle="users_tab">
+                                <a class="nav-tab nav-link" href="#">Users</a>
+                            </li>
+                            <li class="nav-item tab-control" data-toggle="dashboard_tab">
+                                <a class="nav-tab nav-link" href="#">Dashboard</a>
+                            </li>
+                        </ul>
+                        <!-- Table section -->
+                        <div id="services_tab">
+                            {% for category, services_list in services_dict %}
+                            <section class="mb-1">
+                                <div class="opposite-background rounded-4 p-4">
+                                    <h3>Special options:</h3>
+                                    <button
+                                        class="btn btn-success border-0 rounded-4"
+                                        type="submit"
+                                        onclick="mass_update()">
+                                        Auto mass-pull services
+                                    </button>
+                                    
+                                    <h3>{{ category }}</h3>
+
+                                    <div class="table-responsive-lg">
+                                        <table class="table table-borderless align-middle">
+                                            <thead
+                                                class="small-font-custom-16 table-gray-bg text-opposite text-md-center text-xl-start">
+                                                <tr class="subtable-label">
+                                                    <th style="width: 4%" scope="col">id</th>
+                                                    <th style="width: 25%" scope="col">Name</th>
+                                                    <th style="width: 25%" scope="col">Category</th>
+                                                    <th style="width: 14%" id="status_filter" scope="col">Status (click)</th>
+                                                    <th style="width: 8%" scope="col">Base rate</th>
+                                                    <th style="width: 8%" scope="col">Our rate</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="small-font-custom-14">
+
+                                                {% for service in services_list %}
+                                                <tr id={{service.id}}>
+                                                    <td>{{service.id}}</td>
+                                                    <td><span><input class="form-control form-control-custom" id="new_name_{{service.id}}"
+                                                                value="{{service.name}}"></input></span></td>
+                                                    <td>{{service.category}}</td>
+                                                    <td>
+
+                                                        {% if service.enabled %}
+                                                        <span class="enabled_status" id="e_{{service.id}}">✔️</span>
+                                                        <button
+                                                            class="btn btn-success btn-sm px-sm-3 px-md-2 px-xl-3 mx-sm-1 mx-md-0 mx-xl-1 border-0 rounded-4"
+                                                            type="submit"
+                                                            onclick="change_service_status({{service.id}})">
+                                                            Change
+                                                        </button>
+                                                        {% else %}
+                                                        <span id="e_{{service.id}}">❌</span>
+                                                        <button
+                                                            class="btn btn-success btn-sm px-1 px-md-2 px-lg-3 border-0 rounded-4"
+                                                            type="submit"
+                                                            onclick="change_service_status({{service.id}})">
+                                                            Change
+                                                        </button>
+                                                        {% endif %}
+                                                    </td>
+
+                                                <!--btn btn-success btn-sm px-sm-3 px-md-2 px-xl-3 mx-sm-1 mx-md-0 mx-xl-1 border-0 rounded-4 fs-6-->
+                                                    <td>${{service.base_rate}}</td>
+                                                    <td class="d-flex flex-row align-items-center justify-content-start"><span class="col-1 me-2">$</span><span class="col"><input class="form-control form-control-custom" style="width: 60%;" id="new_rate_{{service.id}}"
+                                                                value="{{service.rate}}"></input></span></td>
+                                                    <td><button
+                                                            class="btn btn-success btn-sm px-1 px-md-2 px-lg-3 border-0 rounded-4 fs-6"
+                                                            type="submit" onclick="updateService({{service.id}})">Update
+                                                            service
+                                                        </button></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                            </section>
+                            {% endfor %}
+                        </div>
+                        <div id="users_tab">
+                            <section class="mb-1">
+                                <div class="opposite-background rounded-4 p-4">
+
+                                    <h3>Users list</h3>
+
+                                    <div class="table-responsive-lg">
+                                        <table class="table table-borderless align-middle">
+                                            <thead
+                                                class="small-font-custom-16 table-gray-bg text-opposite text-md-center text-xl-start">
+                                                <tr>
+                                                    <th scope="col">id</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Orders</th>
+                                                    <th scope="col">Total Spent</th>
+                                                    <th scope="col">Funds</th>
+                                                    <th scope="col">Created</th>
+                                                    <th scope="col">Last login</th>
+                                                    <th scope="col">Activated</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="small-font-custom-14">
+
+                                                {% for user in users_list %}
+                                                <tr id={{user.id}}>
+                                                    <td>{{user.id}}</td>
+                                                    <td>{{user.username}}</td>
+                                                    <td>{{user.email}}</td>
+                                                    <td>{{user.num_orders}}</td>
+                                                    <td>${{user.total_spent}}</td>
+                                                    <td>${{user.funds}}</td>
+                                                    <td>{{user.date_created}}</td>
+                                                    <td>{{user.last_login}}</td>
+                                                    <td>{{user.activated}}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-secondary dropdown-toggle"
+                                                                type="button" id="dropdownMenuButton1"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                Actions
+                                                            </button>
+                                                            <ul class="dropdown-menu"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item"
+                                                                        onclick="adminAddFunds({{user.id}}, factor=1)"
+                                                                        href="#">Add funds</a></li>
+                                                                <li><a class="dropdown-item"
+                                                                        onclick="adminAddFunds({{user.id}}, factor=-1)"
+                                                                        href="#">Remove funds</a></li>
+                                                                <li><a class="dropdown-item" href="#">Reset password</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item" href="#">Delete account</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                            </section>
+                        </div>
+                        <div id="dashboard_tab">
+                            <!-- Hello dashboard -->
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <!-- <div class="col-md-3 col-lg-3 mt-5 pt-5 text-center bg-image">
+                    <div class="d-flex justify-content-center card col-6 rounded-circle border border-3 m-auto mt-5">
+                        <img onerror="imageRetry(this)" src="/static/images/user_thumb.webp?timestamp=0" class="card-img"
+                            alt="User login name">
+                        <div class="card-img-overlay">
+                            <div class="text-end icon-badge-margin">
+                                <span class="badge rounded-circle bg-warning">
+                                    <img onerror="imageRetry(this)" src="/static/icons/icon_bell.svg"
+                                        class="icon-size-smaller"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="fs-3 font-semibold pt-2 mb-0">{{ username }}</p>
+                    <p class="text-black-50 small-font-custom-16"><text class="bg-blur-custom p-2">
+                            Account balance ${{funds}}
+                        </text></p>
+                </div> -->
+
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer></footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+<!-- Scroll Mobile JS -->
+<script type="text/javascript" src="/static/js/scroll_to_top.js"></script>
+
+<!-- <script type="text/javascript">
+    // jQuery counterUp
+    $('[data-toggle="counterUp"]').counterUp({
+        delay: 15,
+        time: 1500
+    });
+</script> -->
+
+<!-- Google login -->
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
+
+
+</body>
+
+</html>

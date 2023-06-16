@@ -1,0 +1,21 @@
+<style>
+    .toast {
+        position:fixed;
+        top:10px;
+        right:50%;
+        z-index:999;
+        color:#fff;
+        opacity:95%
+    }
+</style>
+
+<div class="toast" id="status_toast"
+    data-bs-autohide="false">
+    <div class="toast-header">
+        <strong class="me-auto" id="toast_title"><i class="bi-gift-fill"></i>An error occured :(</strong>
+        <button type="button" id="status_toast_close" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div id="toast_text" class="toast-body">
+        It's been a long time since you visited us. We've something special for you. <a href="#">Click here!</a>
+    </div>
+</div>

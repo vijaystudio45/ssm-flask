@@ -1,0 +1,71 @@
+html,
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    background: rgb(247, 107, 175);
+    background: linear-gradient(120deg, rgba(247, 107, 175, 0.95) 0%, rgba(84, 27, 208, 1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    padding-top: 1em;
+}
+
+.rcorners {
+    border-radius: 1rem !important;
+}
+
+
+.navbar {
+    position: relative;
+}
+
+.brand-center {
+    position: absolute;
+    left: 50%;
+    margin-left: -50px !important;
+    display: block;
+}
+
+.link-group {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 7px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-left: 5PX;
+}
+
+.btn-rounded {
+    border-radius: 50px;
+}
+
+a.navbar-link {
+    position: relative;
+}
+
+a.navbar-link:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #ffffff;
+}
+
+
+
+
+a.navbar-link:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}

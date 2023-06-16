@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Place a new order, choose the social media you want to promote and see all the promotion options." />
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/my_style.css">
+    <link rel="stylesheet" href="/static/css/socials.css">
+    <link rel="stylesheet" href="/static/css/select_service.css">
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Autocomplete stuff -->
+    <script src="{{ url_for('static', filename='js/autocomplete.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/autocomplete.css">
+
+    <!-- Plausible script-->
+    <script defer data-domain="boostgram.net" src="https://plausible.io/js/script.js"></script>
+    
+    <!-- Dark mode setup JS -->
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+    
+    <!-- Reloader JS -->
+    <script src="{{ url_for('static', filename='js/reloader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/logout.js')}}"></script>
+
+    <!-- Add order JS -->
+    <script src="{{ url_for('static', filename='js/add_order.js') }}"></script>
+
+    <!-- Counts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <!-- FA Icons -->
+    <script src="https://kit.fontawesome.com/ce08879d07.js" crossorigin="anonymous"></script>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google log in -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
+    <title>Boostgram - Place a new order</title>
+</head>
+
+<body>
+
+    <header></header>
+    {% include 'contact.html' %}
+    {% include 'FAQ.html' %}
+    {% include 'bot_panel.html' %}
+
+    <div id="search_terms" class="d-none">{% for el in search_terms %}
+        {{ el }}
+        <br>
+        {% endfor %}
+    </div>
+
+    <i class="d-block d-md-none fa fa-2x fa-arrow-circle-up go-top" aria-hidden="true"></i>
+
+    <main>
+        <div class="container-fluid">          
+
+            <div class="row">
+
+                <!-- Left global part -->
+                <div class="p-0 col-md-3 col-lg-2">
+
+                    <!-- Menu left side --> 
+
+                        {% include 'menu_total_insert.html' %}
+                    
+                </div>
+
+                <!-- Central global part -->
+                <div class="col-md-9 col-lg-10 silver-background py-3">
+
+                    <div class="central-container">
+
+                        <!-- Search and try section -->
+                        <div class="row mt-3">
+                            <div class="col-7"></div>
+                            <div class="col-12 col-lg-5 p-4 pb-0 pt-0">
+
+                                <div class="input-group position-relative">
+
+                                    <a href="{{url_for('signup')}}" type="button"
+                                        class="btn btn-dark col-6 py-1 rounded-4  small-font-custom-14">
+                                        Try for free
+                                    </a>
+
+                                    <input type="search"
+                                        class="form-control form-control-custom rounded-4 ms-2 py-1 small-font-custom-14"
+                                        id="search" placeholder="Search Anything" aria-label="Search"
+                                        aria-describedby="search-addon"><img onerror="imageRetry(this)"
+                                        src="/static/icons/icon_search.svg"
+                                        class="icon-size-smaller icon-light position-absolute top-50 end-0 translate-middle me-0">
+                                </div>
+                             </div>
+                        </div>
+
+                        <!-- services section -->
+                        <section class="mt-1 mb-4">
+                            <div class="row px-3">
+                                    <h3 class="mt-2">Select Social Media</h3>
+                                    <p class="mt-0 mb-3">All your social media platforms in one place!</p>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="service-list-container mt-3">
+                                    <!-- Only show 1 on mobile -->
+                                    <button type="button" id="previous_service"
+                                        class="d-none d-md-block btn btn-light px-4 rounded-4 small-font-custom-14 prev">
+                                        <img class="filter-icon-inactive" src="{{ url_for('static', filename='icons/icon_previous.webp') }}"
+                                            alt="left" width="22" height="22"> Prev
+                                    </button>
+
+
+                                    <div class="row col service-list align-items-center">
+
+                                        <div id="service-card-0" class="service col-12 col-md-6 col-lg-3 px-3">
+                                            <div class="service-head card hardshadow">
+                                                <div class="image-container instagram mb-2">
+                                                    <img onerror="imageRetry(this)"
+                                                    src="/static/images/brands/Instagram_Glyph_White.svg" />
+                                                    <button class="info">
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_info_p.svg" />
+                                                        </button>
+                                                    <!-- <button class="account">
+                                                        <img onerror="imageRetry(this)"
+                                                        src="/static/images/recommended.webp?timestamp=0" />
+                                                    </button> -->
+                                                </div>
+
+                                                <h5>Instagram</h5>
+
+                                                <span class="mt-2 pt-2 pre-price">Starting at <br />(per 1000)</span>
+                                                <h4 class="price">
+                                                    <span class="currency">$</span>
+                                                    <span class="value">0.03</span>
+                                                </h4>
+                                                <a href="./add_order/Instagram">
+                                                    <button class="add">
+                                                        Explore
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_new_order_p.svg" />
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                            <!-- Counter
+                                            <div class="row mt-4 mb-4 d-none d-md-block d-lg-flex">
+                                                <h6 class="font-semibold text-center">New Orders</h6>
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">Today</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">This Week</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- CTA -->
+                                            <!-- <div class="add-now card pt-0 pt-md-5 hardshadow">
+                                                
+                                            </div> -->
+
+                                        <div id="service-card-1" class="service col-12 col-md-6 col-lg-3 px-3">
+                                            <div class="service-head card hardshadow">
+                                                <div class="image-container tiktok mb-2">
+                                                    <img onerror="imageRetry(this)"
+                                                    src="/static/images/brands/TikTok_Icon_Black_Square.webp?timestamp=0" />
+                                                    <button class="info">
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_info_p.svg" />
+                                                    </button>
+                                                    <!--<button class="account">
+                                                        <img onerror="imageRetry(this)" src="/static/images/egg.jpg" />
+                                                    </button> -->
+                                                </div>
+                                                <h5>Tiktok</h5>
+
+                                                <span class="mt-2 pt-2 pre-price">Starting at <br />(per 1000)</span>
+                                                <h4 class="price">
+                                                    <span class="currency">$</span>
+                                                    <span class="value">0.24</span>
+                                                </h4>
+                                                <a href="./add_order/Tiktok">
+                                                    <button class="add">
+                                                        Explore
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_new_order_p.svg" />
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                            <!-- Counter
+                                            <div class="row mt-4 mb-4 d-none d-md-block d-lg-flex ">
+                                                <h6 class="font-semibold text-center">New Orders</h6>
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">Today</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">This Week</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- CTA
+                                            <div class="add-now card pt-0 pt-md-5 hardshadow">
+                                                
+                                            </div> -->
+                                        <div id="service-card-2" class="service col-12 col-md-6  col-lg-3 px-3">
+                                            <div class="service-head card hardshadow">
+                                                <div class="image-container youtube mb-2">
+                                                    <img onerror="imageRetry(this)"
+                                                        src="/static/images/brands/YouTube-Logo.webp?timestamp=0" />
+                                                    <button class="info">
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_info_p.svg" />
+                                                    </button>
+                                                    <!-- <button class="account">
+                                                        <img onerror="imageRetry(this)" src="/static/images/egg.jpg" />
+                                                    </button> -->
+                                                </div>
+                                                <h5>Youtube</h5>
+
+                                                <span class="mt-2 pt-2 pre-price">Starting at <br />(per 1000)</span>
+                                                <h4 class="price">
+                                                    <span class="currency">$</span>
+                                                    <span class="value">1.05</span>
+                                                </h4>
+                                                <a href="./add_order/Youtube">
+                                                    <button class="add">
+                                                        Explore
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_new_order_p.svg" />
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                            <!-- Counter
+                                                <div class="row mt-4 mb-4 d-none d-md-block d-lg-flex">
+                                                    <h6 class="font-semibold text-center">New Orders</h6>
+                                                    <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">Today</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">This Week</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- CTA -->
+                                            <!-- <div class="add-now card pt-0 pt-md-5 hardshadow">
+                                                
+                                            </div> -->
+
+                                        <div id="service-card-3" class="service col-12 col-md-6  col-lg-3 px-3">
+                                            <div class="service-head card hardshadow">
+                                                <div class="image-container mb-2">
+                                                    <img onerror="imageRetry(this)"
+                                                        src="/static/images/brands/Twitter.webp?timestamp=0" />
+                                                    <button class="info">
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_info_p.svg" />
+                                                    </button>
+                                                    <!-- <button class="account">
+                                                        <img onerror="imageRetry(this)" src="/static/images/egg.jpg" />
+                                                    </button> -->
+                                                </div>
+                                                <h5>Twitter</h5>
+
+                                                <span class="mt-2 pt-2 pre-price">Starting at <br />(per 1000)</span>
+                                                <h4 class="price">
+                                                    <span class="currency">$</span>
+                                                    <span class="value">13.5</span>
+                                                </h4>
+                                                <a href="./add_order/Twitter">
+                                                    <button class="add">
+                                                        Explore
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_new_order_p.svg" />
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                            <!-- Counter
+                                            <div class="row mt-4 mb-4 d-none d-md-block d-lg-flex">
+                                                <h6 class="font-semibold text-center">New Orders</h6>
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">Today</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">This Week</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- CTA -->
+                                            <!-- <div class="add-now card pt-0 pt-md-5 hardshadow">
+                                                
+                                            </div> -->
+
+                                        <div id="service-card-4"
+                                            class="service col-12 col-md-6 col-lg-3 d-block d-md-none px-3">
+                                            <div class="service-head card hardshadow">
+                                                <div class="image-container telegram mb-2">
+                                                    <img onerror="imageRetry(this)"
+                                                        src="/static/images/brands/Telegram.svg" />
+                                                    <button class="info">
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_info_p.svg" />
+                                                    </button>
+                                                    <!-- <button class="account">
+                                                        <img onerror="imageRetry(this)" src="/static/images/egg.jpg" />
+                                                    </button> -->
+                                                </div>
+                                                <h5>Telegram</h5>
+
+                                                <span class="mt-2 pt-2 pre-price">Starting at <br />(per 1000)</span>
+                                                <h4 class="price">
+                                                    <span class="currency">$</span>
+                                                    <span class="value">0.02</span>
+                                                </h4>
+                                                <a href="./add_order/Telegram">
+                                                    <button class="add">
+                                                        Explore
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_new_order_p.svg" />
+                                                    </button>
+                                                </a>
+                                            </div>
+
+                                            <!-- Counter
+                                            <div class="row mt-4 mb-4 d-none d-md-block d-lg-flex">
+                                                <h6 class="font-semibold text-center">New Orders</h6>
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">Today</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">This Week</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- CTA
+                                            <div class="add-now card pt-0 pt-md-5 hardshadow">
+                                                
+                                            </div> -->
+
+                                        </div>
+                                        <div id="service-card-5"
+                                            class="service col-12 col-md-6 col-lg-3 d-block d-md-none px-3">
+                                            <div class="service-head card hardshadow">
+                                                <div class="image-container facebook mb-2">
+                                                    <img onerror="imageRetry(this)"
+                                                        src="/static/images/brands/Facebook-Logo.webp?timestamp=0" />
+                                                    <button class="info">
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_info_p.svg" />
+                                                    </button>
+                                                    <!-- <button class="account">
+                                                        <img onerror="imageRetry(this)" src="/static/images/egg.jpg" />
+                                                    </button> -->
+                                                </div>
+                                                <h5>Facebook</h5>
+
+                                                <span class="mt-2 pt-2 pre-price">Starting at <br />(per 1000)</span>
+                                                <h4 class="price">
+                                                    <span class="currency">$</span>
+                                                    <span class="value">0.84</span>
+                                                </h4>
+                                                <a href="./add_order/Facebook">
+                                                    <button class="add">
+                                                        Explore
+                                                        <img onerror="imageRetry(this)"
+                                                            src="/static/icons/icon_new_order_p.svg" />
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                            <!-- Counter
+                                            <div class="row mt-4 mb-4 d-none d-md-block d-lg-flex">
+                                                <h6 class="font-semibold text-center">New Orders</h6>
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">Today</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-lg-6 px-2 mb-2">
+                                                    <div class="card dim-counter">
+                                                        <h6 class="font-semibold">This Week</h6>
+                                                        <h5 class="closer-margin-top font-medium"
+                                                            data-toggle="counterUp">
+                                                            soon</h5>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- CTA -->
+                                            <!-- <div class="add-now card pt-0 mt-0 pt-md-5 hardshadow">
+                                                
+                                            </div> -->
+
+                                        
+                                    </div>
+                                    <button type="button" id="next_service"
+                                        class="d-none d-md-block btn btn-light px-4 rounded-4 small-font-custom-14 next">
+                                        Next <img class="filter-icon-inactive" src="{{ url_for('static', filename='icons/icon_next.webp') }}"
+                                            alt="left" width="22" height="22">
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                    </section>
+                    <div class="d-flex justify-content-center">
+                        <div>Having a hard time finding the desired option?</div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="/add_order_advanced">
+                            <div><button class="btn btn-dark mt-1 py-1 px-4 rounded-4  small-font-custom-14">Try out the Advanced Order Form</button></div>
+                            
+                        </a>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        </div>
+
+
+    
+
+    </main>
+
+    <footer></footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+<!-- Scroll Mobile JS -->
+<script type="text/javascript" src="/static/js/scroll_to_top.js"></script>
+
+<!-- <script type="text/javascript">
+    // jQuery counterUp
+    $('[data-toggle="counterUp"]').counterUp({
+        delay: 15,
+        time: 1500
+    });
+</script> -->
+
+<!-- Google login -->
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
+
+
+</body>
+
+</html>

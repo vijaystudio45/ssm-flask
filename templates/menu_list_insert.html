@@ -1,0 +1,90 @@
+{% if logged_in %}
+<div class="d-none d-md-block user-block mb-1 pb-2 small-font-custom-18">
+    <img src="/static/images/spaceman.webp" class="img-fluid" />
+    <h6 class="text-black-dark mt-1 mb-0 ">Username:</h6>
+    <div class="text-black-c-50">{{username}}</div>
+    <h6 class="text-black-dark my-0">Balance:</h6>
+    <div class="text-black-c-50">${{funds}}</div>
+    <h6 class="text-black-dark my-0">LVL:</h6>
+    <div class="text-black-c-50">1</div>
+
+
+</div>
+{% endif %}
+
+{% if admin %}
+<li class="nav-item mt-3 mb-1">
+    <a class="nav-link {% if request.endpoint=='admin_panel' %}menu-color-text-active{%else%}text-black-c-dark{%endif%}" aria-current="page"
+        href="{{ url_for('admin_panel')}}"><img onerror="imageRetry(this)"
+            src="/static/icons/icon_user_admin.svg"
+            class="icon-size-normal icon-light me-3 {% if request.endpoint=='admin_panel' %}filter-icon-active{% else %}filter-icon-inactive{% endif %}">Admin Panel</a>
+</li>
+{% endif %}
+
+<li class="nav-item mt-2 mt-md-3 mb-0 mb-md-1">
+    <a class="nav-link {% if request.endpoint=='new_home' %}menu-color-text-active{%else%}text-black-c-50{%endif%}" aria-current="page"
+        href="{{ url_for('new_home')}}"><img onerror="imageRetry(this)"
+            src="/static/icons/icon_boost_gram_p.svg"
+            class="icon-size-normal icon-light me-3 {% if request.endpoint=='new_home' %}filter-icon-active{% else %}filter-icon-inactive{% endif %}">BoostGram</a>
+</li>
+<li class="nav-item my-0 my-md-1">
+    <a class="nav-link {% if request.endpoint=='add_order' %}menu-color-text-active{%else%}text-black-c-50{%endif%}" href="{{ url_for('add_order')}}"><img
+            onerror="imageRetry(this)" src="/static/icons/icon_new_order.svg"
+            class="icon-size-normal icon-light me-3 {% if request.endpoint=='add_order' %}filter-icon-active{% else %}filter-icon-inactive{% endif %}">New Order</a>
+</li>
+<li class="nav-item my-0 my-md-1">
+    <a class="nav-link {% if request.endpoint=='order_history' %}menu-color-text-active{%else%}text-black-c-50{%endif%}" href="{{ url_for('order_history')}}">
+        <img onerror="imageRetry(this)" src="/static/icons/icon_order_history.svg"
+            class="icon-size-normal icon-light me-3 {% if request.endpoint=='order_history' %}filter-icon-active{% else %}filter-icon-inactive{% endif %}">Order
+        History </a>
+</li>
+<li class="nav-item my-0 my-md-1">
+    <a class="nav-link {% if request.endpoint=='add_funds' %}menu-color-text-active{%else%}text-black-c-50{%endif%}" href="{{ url_for('add_funds')}}"><img
+            onerror="imageRetry(this)" src="/static/icons/icon_add_funds.svg"
+            class="icon-size-normal icon-light me-3 {% if request.endpoint=='add_funds' %}filter-icon-active{% else %}filter-icon-inactive{% endif %}">Add balance</a>
+</li>
+<li class="nav-item my-0 my-md-1" onclick="benefits()">
+    <span class="nav-link text-black-c-50" href="#"><img onerror="imageRetry(this)"
+            src="/static/icons/icon_benefits.svg"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">Benefits</span>
+</li>
+{% if not logged_in %}
+<li class="nav-item my-0 my-md-1">
+    <a class="nav-link text-black-c-50" href="{{url_for('signup')}}"><img
+            onerror="imageRetry(this)" src="/static/icons/icon_sign_up.svg"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">Sign Up</a>
+</li>
+{% endif %}
+<li class="nav-item my-0 my-md-1">
+    <span class="nav-link text-black-c-50" href="#"><img onerror="imageRetry(this)"
+            src="/static/icons/icon_affiliates.svg"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">Affiliates</span>
+</li>
+<li class="nav-item my-0 my-md-1">
+    <span id="contact_us" class="nav-link text-black-c-50" onclick="show()"><img
+            onerror="imageRetry(this)" src="/static/icons/icon_contact_us.png"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">Contact us</span>
+</li>
+<li class="nav-item my-0 my-md-1">
+    <span id="bot_panel" class="nav-link text-black-c-50" onclick="show_bot()"><img
+            onerror="imageRetry(this)" src="/static/icons/icon_telegram_bot.png"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">Bot Panel</span>
+</li>
+<li class="nav-item my-0 my-md-1">
+    <span id="bot_panel" class="nav-link text-black-c-50" onclick="show_faq()"><img
+            onerror="imageRetry(this)" src="/static/icons/icon_help.png"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">FAQ</span>
+</li>
+
+<li class="nav-item mt-3 mt-md-5 mb-md-3">
+    <span class="nav-link text-black-c-50" onclick="toggleDarkMode()">
+        <img
+            onerror="imageRetry(this)" src="/static/icons/icon_log_out.svg"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">Dark mode</span>
+</li>
+<li class="nav-item my-0 mb-2 my-md-1">
+    <span class="nav-link text-black-c-50" onclick="logout()"><img
+            onerror="imageRetry(this)" src="/static/icons/icon_log_out.svg"
+            class="icon-size-normal icon-light me-3 filter-icon-inactive">Log
+        Out</span>
+</li>

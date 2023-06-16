@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+    content="Easily add funds to your boostgram account. Pay using PayPal, BTC, ETH, USDT and many more. Promote your business today!" />
+    <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/my_style.css">
+    <link rel="stylesheet" href="/static/css/add_funds.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FA Icons -->
+    <script src="https://kit.fontawesome.com/ce08879d07.js" crossorigin="anonymous"></script>
+    
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- Plausible script-->
+    <script defer data-domain="boostgram.net" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Autocomplete stuff -->
+    <script src="{{ url_for('static', filename='js/autocomplete.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/autocomplete.css">
+    
+    <!-- Reloader Javascript -->
+    <script src="{{ url_for('static', filename='js/reloader.js') }}"></script>
+
+    <!-- Logout Javascript -->
+    <script src="{{ url_for('static', filename='js/logout.js')}}"></script>
+
+    <!-- Advanced alerting Javascript -->
+    <script src="{{ url_for('static', filename='js/toast_control.js')}}"></script>
+
+    <!-- Crypto Javascript -->
+    <script src="{{ url_for('static', filename='js/crypto.js') }}"></script>
+
+    <!-- Counts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+    <!-- Dark mode setup JS -->
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+
+    <!-- Google log in -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
+    <!-- Paypal -->
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="/static/js/paypal.js"></script>
+    <title>BoostGram - Add funds to your account</title>
+</head>
+
+<body>
+    <div class="d-none" id="port">{{port}}</div>
+    <div class="d-none" id="my_ip">{{my_ip}}</div>
+
+    <header></header>
+    {% include 'FAQ.html' %}
+    {% include 'contact.html' %}
+    {% include 'bot_panel.html' %}
+
+    <div id="search_terms" class="d-none">{% for el in search_terms %}
+        {{ el }}
+        <br>
+        {% endfor %}
+    </div>
+
+    <i class="d-block d-md-none fa fa-2x fa-arrow-circle-up go-top" aria-hidden="true"></i>
+
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- Left global part -->
+                <div class="p-0 col-md-3 col-lg-2">
+
+                    <!-- Menu left side -->
+
+                        {% include 'menu_total_insert.html' %}
+
+                </div>
+
+                <!-- Central global part -->
+                <div class="col-md-9 col-lg-10 silver-background py-3">
+
+                    {% include 'toast.html' %}
+
+                    <div class="central-container px-3 col-12">
+
+                        <!-- Seach and try section -->
+                        <div class="row mt-3">
+                            <div class="col-7"></div>
+                            <div class="col-12 col-lg-5 p-4 pb-0 pt-0">
+
+                                <div class="input-group position-relative">
+                                    <button type="button"
+                                        class="btn btn-dark col-6 py-1 rounded-4  small-font-custom-14">
+                                        Try for free
+                                    </button>
+
+                                    <input type="search"
+                                        class="form-control form-control-custom rounded-4 ms-2 py-1 small-font-custom-14"
+                                        id="search" placeholder="Search Anything" aria-label="Search"
+                                        aria-describedby="search-addon"><img onerror="imageRetry(this)"
+                                        src="/static/icons/icon_search.svg"
+                                        class="icon-size-smaller icon-light position-absolute top-50 end-0 translate-middle me-4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <section class="mt-1 mb-4">
+                            <div class="row px-3">
+                                <h3 class="mt-2">Add funds</h3>
+                                <p class="mt-0 mb-3">Add credits to your account for future orders</p>
+                            </div>
+
+                            <div class="px-4">
+                                <div class="payment-options-list row">
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/btc.webp?timestamp=0"
+                                            onerror="imageRetry(this)" />
+                                        <h5>Bitcoin (BTC)</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container btc" data-symbol="$">
+                                                <input id="BTC_input" type="number" step="0.01" />
+                                            </div>
+                                            <button onclick="cryptoPay('BTC')" class="pay-now btn btn-success">Pay with
+                                                BTC</button>
+                                        </form>
+                                    </div>
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/eth.webp?timestamp=0"
+                                            onerror="imageRetry(this)" />
+                                        <h5>Ethereum (ETH)</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container eth" data-symbol="$">
+                                                <input id="ETH_input" type="number" step="0.01" />
+                                            </div>
+                                            <button onclick="cryptoPay('ETH')" class=" pay-now btn btn-success">Pay with
+                                                ETH</button>
+                                        </form>
+                                    </div>
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/usdc.webp?timestamp=0"
+                                            onerror="imageRetry(this)" />
+                                        <h5>USDC Coin (USDC)</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container usdc" data-symbol="$">
+                                                <input id="USDC_input" type="number" step="0.01" />
+                                            </div>
+                                            <button onclick="cryptoPay('USDC')" class=" pay-now btn btn-success">Pay with
+                                                USDC</button>
+                                        </form>
+                                    </div>
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/pp.webp?timestamp=0"
+                                            onerror="imageRetry(this)" />
+                                        <h5>PayPal</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container paypal" data-symbol="$">
+                                                <input id="paypal-topup" type="number" step="0.01" />
+                                            </div>
+
+                                            <div id="paypal-button" class="pt-2"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="payment-options-list row mt-2">
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/btc_cash.webp " onerror="imageRetry(this)" />
+                                        <h5>Bitcoin Cash (BTH)</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container btc" data-symbol="$">
+                                                <input id="BTH_input" type="number" step="0.01" />
+                                            </div>
+                                            <button onclick="cryptoPay('BTH')" class="pay-now btn btn-success">Pay with
+                                                BTH</button>
+                                        </form>
+                                    </div>
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/dai.webp?timestamp=0"
+                                            onerror="imageRetry(this)" />
+                                        <h5>Dai (DAI)</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container eth" data-symbol="$">
+                                                <input id="DAI_input" type="number" step="0.01" />
+                                            </div>
+                                            <button onclick="cryptoPay('DAI')" class=" pay-now btn btn-success">Pay with
+                                                DAI</button>
+                                        </form>
+                                    </div>
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/tether.webp" onerror="imageRetry(this)" />
+                                        <h5>Tether (USDT)</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container usdc" data-symbol="$">
+                                                <input id="USDT_input" type="number" step="0.01" />
+                                            </div>
+                                            <button onclick="cryptoPay('USDT')" class=" pay-now btn btn-success">Pay with
+                                                USDT</button>
+                                        </form>
+                                    </div>
+                                    <div class="payment-option rounded card hardshadow">
+                                        <img src="/static/images/crypto/litecoin.webp " onerror="imageRetry(this)" />
+                                        <h5>Litecoin (LTC)</h5>
+                                        <form action="javascript:void(0);" method="post">
+                                            <div class="input-container usdc" data-symbol="$">
+                                                <input id="LTC_input" type="number" step="0.01" />
+                                            </div>
+                                            <button onclick="cryptoPay('LTC')" class=" pay-now btn btn-success">Pay with
+                                                LTC</button>
+                                        </form>
+                                    </div>
+
+                               
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+
+
+
+                </div>
+                <!-- Right global part -->
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </main>
+
+    <footer></footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+<!-- Scroll Mobile JS -->
+<script type="text/javascript" src="/static/js/scroll_to_top.js"></script>
+
+<!-- <script type="text/javascript">
+    // jQuery counterUp
+    $('[data-toggle="counterUp"]').counterUp({
+        delay: 15,
+        time: 1500
+    });
+</script> -->
+
+<!-- Google login -->
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
+
+
+</body>
+
+</html>
